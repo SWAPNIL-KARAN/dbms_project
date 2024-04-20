@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Banking Management System</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .container {
+    width: 400px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+
+  h1 {
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+
+  .form-toggle {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .error-message {
+    color: red;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Login</h1>
+  <form id="loginForm" onsubmit="return false;">
+    <input type="text" id="loginUsername" placeholder="Username" required><br>
+    <input type="password" id="loginPassword" placeholder="Password" required><br>
+    <input type="submit" value="Login">
+    <div class="error-message" id="loginErrorMessage"></div>
+  </form>
+  <div class="form-toggle" onclick="toggleForm()">Create an account</div>
+</div>
+
+<div class="container" style="display: none;" id="signupContainer">
+  <h1>Sign Up</h1>
+  <form id="signupForm" onsubmit="return false;">
+    <input type="text" id="signupUsername" placeholder="Username" required><br>
+    <input type="password" id="signupPassword" placeholder="Password" required><br>
+    <input type="password" id="signupConfirmPassword" placeholder="Confirm Password" required><br>
+    <input type="submit" value="Sign Up">
+    <div class="error-message" id="signupErrorMessage"></div>
+  </form>
+  <div class="form-toggle" onclick="toggleForm()">Already have an account</div>
+</div>
+
+<script>
+  function toggleForm() {
+    document.getElementById("loginForm").reset();
+    document.getElementById("signupForm").reset();
+    document.getElementById("loginErrorMessage").textContent = "";
+    document.getElementById("signupErrorMessage").textContent = "";
+
+    document.getElementById("loginContainer").style.display = document.getElementById("loginContainer").style.display === "none" ? "block" : "none";
+    document.getElementById("signupContainer").style.display = document.getElementById("signupContainer").style.display === "none" ? "block" : "none";
+  }
+
+  document.getElementById("loginForm").addEventListener("submit", function() {
+    const username = document.getElementById("loginUsername").value;
+    const password = document.getElementById("loginPassword").value;
+    // Add your login logic here
+    // Example:
+    if (username === "dbms" && password === "swapnil") {
+      window.location.href = "index.html";
+    } else {
+      document.getElementById("loginErrorMessage").textContent = "Invalid username or password";
+    }
+  });
+
+  document.getElementById("signupForm").addEventListener("submit", function() {
+    const username = document.getElementById("signupUsername").value;
+    const password = document.getElementById("signupPassword").value;
+    const confirmPassword = document.getElementById("signupConfirmPassword").value;
+    // Add your signup logic here
+    // Example:
+    if (password !== confirmPassword) {
+      document.getElementById("signupErrorMessage").textContent = "Passwords do not match";
+    } else {
+      // Proceed with signup
+      console.log("Signup successful");
+    }
+  });
+</script>
+</body>
+</html>
